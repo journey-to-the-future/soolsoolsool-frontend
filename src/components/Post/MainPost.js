@@ -2,7 +2,7 @@ import Stack from '@mui/material/Stack';
 import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
-import img from '../../assets/복순도가.png'
+// import img from '../../assets/복순도가.png'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const ImageSize = styled.img`
 `;
 
 const MainPost = props => {
-  const { type, name, company, price, id } = props
+  const { img, type, name, company, price, id } = props
 
   return (
     <Link to={`/detail/product/${id}`}>

@@ -16,7 +16,7 @@ const ImageSize = styled.img`
 const Post = forwardRef(({ post }, ref) => {
 
     const postBody = (
-        <Link to={`/detail/product/${post.id}`}>
+        <Link to={`/detail/product/${post.itemId}`}>
             <Box sx={{ 
                     display: "flex",
                     height: "36vh",
@@ -44,7 +44,7 @@ const Post = forwardRef(({ post }, ref) => {
                  }}
             >
                 <Box className='childBox1' sx={{ width: "20%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                    <ImageSize src={img}/>
+                    <ImageSize src={post.imageUrl}/>
                 </Box>
                 <Box sx={{ width: "50%", display: "flex", flexDirection: "column", justifyContent: "space-around" }}>
                     <Box sx={{ marginLeft: "1vw" }}>
@@ -86,7 +86,7 @@ const Post = forwardRef(({ post }, ref) => {
                         </Typography> 
                         <Typography variant="body1" gutterBottom >
                             <b>가격: {post.price}</b>
-                        </Typography> 
+                        </Typography>
                     </Box>
                 </Box>
             </Box>

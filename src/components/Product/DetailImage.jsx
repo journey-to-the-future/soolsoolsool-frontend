@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
-import Container from "@mui/material/Container";
 import img from "../../assets/복순도가.png"
+import { getProductDetail } from "../../api/axios";
+import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 const ImageSize = styled.img`
   width: 100%;
@@ -9,8 +11,18 @@ const ImageSize = styled.img`
 `;
 
 function DetailImage() {
+  const [data, setData] = useState("");
+  const param = useParams();
+
+  useEffect(() => {
+    getProductDetail(param.productId).then((data) => {
+      setData(data);
+      console.log(data)
+    });
+  }, [param]);
+
   return (
-        <ImageSize src={img} alt="sool image" />
+        <ImageSize src={data.imageUrl} alt="sool image" />
   )
 }
 

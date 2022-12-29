@@ -1,13 +1,21 @@
 import logo from "../../assets/soolsoolsool.png";
 import styled from "styled-components";
-import { Box, Button, Typography, Link, Paper, InputBase, IconButton, Stack } from "@mui/material";
-import { SportsBar, LocalBar, LocalDrink, WineBar, Liquor } from "@mui/icons-material";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderOptionsButton from "../Button/HeaderOptionsButton"
+
+import { Button,  Stack } from "@mui/material";
+import { SportsBar, LocalBar, LocalDrink, WineBar, Liquor } from "@mui/icons-material";
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-
 
 function Search() {
   return (
@@ -43,8 +51,22 @@ const Image = styled.img`
 `;
 
 const Header = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(['refreshToken'])
+  const navigate = useNavigate()
+
+  const logoutHandler = () => {
+    if(!cookies.refreshToken) {
+      navigate('/login')
+    } else {
+      localStorage.removeItem('userId')
+      removeCookie('refreshToken')
+      alert("로그아웃 되었습니다.")
+      window.location.replace('/')
+    }
+  }
+
   return (
-    <Box sx={{ width: "100%", height: "120px", boxShadow: "1" }}>
+    <Box sx={{ width: "100%", height: "120px", borderBottom: '1px solid lightgray' }}>
       <Box
         sx={{
           width: "100%",
@@ -84,18 +106,18 @@ const Header = () => {
               alignItems: "center",
             }}
           >
-            <Link
+            <Typography
               href="/login"
               sx={{
                 marginRight: "15px",
                 color: "#878787",
                 textDecoration: "none",
+                cursor: "pointer"
               }}
+              onClick={logoutHandler}
             >
-              <Button variant="text">
-                <Typography fontSize="small" color="black">로그인</Typography>
-              </Button>
-            </Link>
+              {cookies.refreshToken ? "로그아웃" : "로그인"}
+            </Typography>
             <Button variant="text">
               <FavoriteBorderOutlinedIcon fontSize='small' sx={{ color:"black" }} />
             </Button>
@@ -103,7 +125,6 @@ const Header = () => {
               <ShoppingBagOutlinedIcon fontSize='small' sx={{ color:"black" }} />
             </Button>
             <HeaderOptionsButton />
-
           </Box>
         </Box>
       </Box>
@@ -120,21 +141,21 @@ const Header = () => {
           }}
         >
           <Stack direction="row" spacing={8}>
-          <Link href="/explore" underline="hover" sx={{textDecoration: 'none', color: '#3E3E3E', fontWeight: 'bold'}}>
-            <Typography fontSize="small" color="black"><SportsBar fontSize="small" color="black"/><b> 탁주(막걸리)</b></Typography>
-          </Link>
-          <Link href="/explore" underline="hover" sx={{textDecoration: 'none', color: '#3E3E3E', fontWeight: 'bold'}}>
-            <Typography fontSize="small" color="black"><LocalDrink fontSize="small" color="black"/><b> 증류주(소주)</b></Typography>
-          </Link>
-          <Link href="/explore" underline="hover" sx={{textDecoration: 'none', color: '#3E3E3E', fontWeight: 'bold'}}>
-            <Typography fontSize="small" color="black"><LocalBar fontSize="small" color="black"/><b> 청주•약주(맑은술)</b></Typography>
-          </Link>
-          <Link href="/explore" underline="hover" sx={{textDecoration: 'none', color: '#3E3E3E', fontWeight: 'bold'}}>
-            <Typography fontSize="small" color="black"><WineBar fontSize="small" color="black"/><b> 과실주(한국식 와인)</b></Typography>
-          </Link>
-          <Link href="/explore" underline="hover" sx={{textDecoration: 'none', color: '#3E3E3E', fontWeight: 'bold'}}>
-            <Typography fontSize="small" color="black"><Liquor fontSize="small" color="black"/><b> 리큐르•기타주류</b></Typography>
-          </Link>
+            <Link href="/explore" underline="hover" sx={{textDecoration: 'none', color: '#3E3E3E', fontWeight: 'bold'}}>
+              <Typography fontSize="small" color="black"><SportsBar fontSize="small" color="black"/><b> 탁주(막걸리)</b></Typography>
+            </Link>
+            <Link href="/explore" underline="hover" sx={{textDecoration: 'none', color: '#3E3E3E', fontWeight: 'bold'}}>
+              <Typography fontSize="small" color="black"><LocalDrink fontSize="small" color="black"/><b> 증류주(소주)</b></Typography>
+            </Link>
+            <Link href="/explore" underline="hover" sx={{textDecoration: 'none', color: '#3E3E3E', fontWeight: 'bold'}}>
+              <Typography fontSize="small" color="black"><LocalBar fontSize="small" color="black"/><b> 청주•약주(맑은술)</b></Typography>
+            </Link>
+            <Link href="/explore" underline="hover" sx={{textDecoration: 'none', color: '#3E3E3E', fontWeight: 'bold'}}>
+              <Typography fontSize="small" color="black"><WineBar fontSize="small" color="black"/><b> 과실주(한국식 와인)</b></Typography>
+            </Link>
+            <Link href="/explore" underline="hover" sx={{textDecoration: 'none', color: '#3E3E3E', fontWeight: 'bold'}}>
+              <Typography fontSize="small" color="black"><Liquor fontSize="small" color="black"/><b> 리큐르•기타주류</b></Typography>
+            </Link>
           </Stack>
         </Box>
       </Box>

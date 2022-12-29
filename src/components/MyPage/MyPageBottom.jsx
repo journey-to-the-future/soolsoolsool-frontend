@@ -1,22 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { getProductDetail } from "../../api/axios";
 
 import Box from "@mui/material/Box";
 import TextField from '@mui/material/TextField';
-import { useState } from "react";
 
 function MyPageBottom(props) {
-  // const [storage, setStorage] = useState([]);
-  const allId = localStorage.getItem('id');
-  console.log(allId);
-
-  // const storageValue = () => {
-  //   setStorage((prev) => {
-  //     return [...prev, allId]
-  //   })
-  //   console.log(storage);
-  // }
-  
 
   if(props.category === 'settings'){
     return (
@@ -54,9 +44,6 @@ function MyPageBottom(props) {
         <Box sx={{height: '50vh', padding: '30px 50px', border: '1px solid #F9D537', borderRadius: '12px'}}>
           <Box sx={{height: '40px', borderBottom: '1px solid #F9D537'}}>
               <Box sx={{fontWeight: 'bold'}}>My wish list</Box>
-          </Box>
-          <Box>
-            {/* {storage} */}
           </Box>
         </Box>
       </>
