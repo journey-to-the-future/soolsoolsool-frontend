@@ -5,8 +5,8 @@ import axios from 'axios'
 // })
 
 export const getMainSlider = async (pageParam = 0, options = {}) => {
-    const response = await axios.get(`/api/v1/item/list/page?page=${pageParam}&size=12`, options)
-    return response.data.data.content
+    const response = await axios.get(`/api/v1/item/list`, options)
+    return response.data.data
 }
 
 export const getExplore = async (pageParam = 0, options = {}) => {
