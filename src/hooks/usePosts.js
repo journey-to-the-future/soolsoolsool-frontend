@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { getExplore } from '../api/axios'
+import { getMain } from '../api/axios'
 
-const usePosts = (pageNum = 1) => {
+const usePosts = (pageNum = 0) => {
     const [results, setResults] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(false)
@@ -16,7 +16,7 @@ const usePosts = (pageNum = 1) => {
         const controller = new AbortController()
         const { signal } = controller
 
-        getExplore(pageNum, { signal })
+        getMain(pageNum, { signal })
             .then(data => {
                 setResults(prev => [...prev, ...data])
                 setHasNextPage(Boolean(data.length))

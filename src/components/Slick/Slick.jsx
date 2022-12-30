@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { getExplore } from "../../api/axios";
+import React, {Component} from "react";
+import {getMainSlider} from "../../api/axios";
 import styled from 'styled-components';
 import Slider from "react-slick";
 import MainPost from "../Post/MainPost";
@@ -13,6 +13,7 @@ const StyledSlider = styled(Slider)`
   height: 100%;
   width: 100%;
   position: relative;
+
   .slick-prev::before,
   .slick-next::before {
     opacity: 0;
@@ -36,88 +37,92 @@ const NextTo = styled.div`
 `;
 
 class ProductSlider extends Component {
-  constructor() {
-    super();
-    this.state = {
-      slides: []
-    };
-  }
-
-  componentDidMount(){
-    getExplore(1)
-      .then((response) => {
-         this.setState({
-            slides: response.slice(0, 20)
-          });
-      })
+    constructor(props) {
+        super(props);
+        this.state = {
+            slides: [],
+            pageNum: props.pageNumber
+        };
+        console.log(this.state.pageNum);
     }
 
-  render() {
-    var settings = {
-      dots: false,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 4,
-      initialSlide: 0,
-      prevArrow: (
-        <Pre>
-          <ArrowBackIosIcon 
-            color="primary" 
-            fontSize="large" 
-            sx={{ "&:hover": { transform: "scale(1.2)", transitionDuration: "0.4s" } }}
-          />
-        </Pre>
-      ),
-      nextArrow: (
-        <NextTo>
-          <ArrowForwardIosIcon 
-            color="primary" 
-            fontSize="large"
-            sx={{ "&:hover": { transform: "scale(1.2)", transitionDuration: "0.4s" } }}
-          />
-        </NextTo>
-      ),
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2
-          }
-        }
-      ]
+
+    componentDidMount() {
+        getMainSlider(this.state.pageNum)
+            .then((response) => {
+                this.setState({
+                    slides: response
+                });
+            })
     };
 
-    return (
-      <StyledSlider {...settings}>
-        {this.state.slides.map((slide, index) => {
-          return (
-            <div key={index}>
-              <MainPost img={slide.imageUrl} id={slide.itemId} price={slide.price} type={slide.soolType} name={slide.name} company={slide.company} />
-            </div>
-          );
-        })}
-      </StyledSlider>
-    );
-  }
+    render() {
+        var settings = {
+            dots: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            initialSlide: 0,
+            prevArrow: (
+                <Pre>
+                    <ArrowBackIosIcon
+                        color="primary"
+                        fontSize="large"
+                        sx={{"&:hover": {transform: "scale(1.2)", transitionDuration: "0.4s"}}}
+                    />
+                </Pre>
+            ),
+            nextArrow: (
+                <NextTo>
+                    <ArrowForwardIosIcon
+                        color="primary"
+                        fontSize="large"
+                        sx={{"&:hover": {transform: "scale(1.2)", transitionDuration: "0.4s"}}}
+                    />
+                </NextTo>
+            ),
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        initialSlide: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                }
+            ]
+        };
+
+        return (
+            <StyledSlider {...settings}>
+                {this.state.slides.map((slide, index) => {
+                    return (
+                        <div key={index}>
+                            <MainPost img={slide.imageUrl} id={slide.itemId} price={slide.price} type={slide.soolType}
+                                      name={slide.name} company={slide.company}/>
+                        </div>
+                    );
+                })}
+            </StyledSlider>
+        );
+    }
 }
 
 export default ProductSlider;

@@ -2,7 +2,6 @@ import Stack from '@mui/material/Stack';
 import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
-// import img from '../../assets/복순도가.png'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -20,7 +19,7 @@ const MainPost = props => {
         <Box sx={{ padding: "12px" }}>
             <Box sx={{
                 padding: "12px", 
-                height: "48vh",
+                height: "36vh",
                 border: "2px solid #DCDCDC",
                 borderRadius: "12px",
                 width: "100%",

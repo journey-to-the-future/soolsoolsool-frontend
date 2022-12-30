@@ -3,19 +3,14 @@ import styled from "styled-components";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
-import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
-import InputBase from "@mui/material/InputBase";
-import IconButton from "@mui/material/IconButton";
+import { Button,Stack,Box,Link,Typography,Paper,InputBase,IconButton } from "@mui/material";
+import { SportsBar, LocalBar, LocalDrink, WineBar, Liquor } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+
 import HeaderOptionsButton from "../Button/HeaderOptionsButton"
 
-import { Button,  Stack } from "@mui/material";
-import { SportsBar, LocalBar, LocalDrink, WineBar, Liquor } from "@mui/icons-material";
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+
 
 function Search() {
   return (
@@ -120,9 +115,6 @@ const Header = () => {
             </Typography>
             <Button variant="text">
               <FavoriteBorderOutlinedIcon fontSize='small' sx={{ color:"black" }} />
-            </Button>
-            <Button variant="text">
-              <ShoppingBagOutlinedIcon fontSize='small' sx={{ color:"black" }} />
             </Button>
             <HeaderOptionsButton />
           </Box>

@@ -35,7 +35,7 @@ const marks = [
 
 const minDistance = 10;
 
-const ExploreSidebar = () => {
+const ExploreSideBar = () => {
     const [value, setValue] = useState([20000, 150000]);
 
     const [takju, setTakju] = useState(true);
@@ -194,4 +194,4 @@ const ExploreSidebar = () => {
     )
 }
 
-export default ExploreSidebar
+export default ExploreSideBar

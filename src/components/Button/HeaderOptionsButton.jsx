@@ -2,6 +2,8 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { Button, Menu, MenuItem, Divider, Link, Typography } from '@mui/material';
 import PermIdentitySharpIcon from "@mui/icons-material/PermIdentitySharp";
+import { useCookies } from 'react-cookie';
+
 
 
 const StyledMenu = styled((props) => (
@@ -56,7 +58,9 @@ export default function CustomizedMenus() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const [cookies, setCookie, removeCookie] = useCookies(['refreshToken'])
 
+    // {!cookies.refreshToken ? "/login" : "/seller"}
     return (
         <div>
             <Button
@@ -80,49 +84,49 @@ export default function CustomizedMenus() {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleClose} disableRipple>
-                    <Link href="/mypage" underline="none">
+                    <Link href={!cookies.refreshToken ? "/login" : "/mypage"} underline="none">
                         <Typography fontSize="small" color="black">회원 정보</Typography>
                     </Link>
                 </MenuItem>
                 <Divider variant="middle" />
                 <MenuItem onClick={handleClose} disableRipple>
-                    <Link href="/mypage" underline="none">
+                    <Link href={!cookies.refreshToken ? "/login" : "/mypage"} underline="none">
                         <Typography fontSize="small" color="black">주문내역 확인</Typography>
                     </Link>
                 </MenuItem>
                 <Divider variant="middle" />
                 <MenuItem onClick={handleClose} disableRipple>
-                    <Link href='/mypage' underline="none">
+                    <Link href={!cookies.refreshToken ? "/login" : "/mypage"} underline="none">
                         <Typography fontSize="small" color="black">관심 상품</Typography>
                     </Link>
                 </MenuItem>
                 <Divider variant="middle" />
                 <MenuItem onClick={handleClose} disableRipple>
-                    <Link href="/mypage" underline="none">
+                    <Link href={!cookies.refreshToken ? "/login" : "/mypage"} underline="none">
                         <Typography fontSize="small" color="black">고객님을 위한 추천상품</Typography>
                     </Link>
                 </MenuItem>
                 <Divider variant="middle" />
                 <MenuItem onClick={handleClose} disableRipple>
-                    <Link href="/mypage" underline="none">
+                    <Link href={!cookies.refreshToken ? "/login" : "/mypage"} underline="none">
                         <Typography fontSize="small" color="black">회원정보 수정</Typography>
                     </Link>
                 </MenuItem>
                 <Divider variant="middle" />
                 <MenuItem onClick={handleClose} disableRipple>
-                    <Link href="/mypage" underline="none">
+                    <Link href={!cookies.refreshToken ? "/login" : "/mypage"} underline="none">
                         <Typography fontSize="small" color="black">주수록</Typography>
                     </Link>
                 </MenuItem>
                 <Divider variant="middle" />
                 <MenuItem onClick={handleClose} disableRipple>
-                    <Link href="/mypage" underline="none">
+                    <Link href={!cookies.refreshToken ? "/login" : "/mypage"} underline="none">
                        <Typography fontSize="small" color="black">문의내역</Typography>
                     </Link>
                 </MenuItem>
                 <Divider variant="middle" />
                 <MenuItem onClick={handleClose} disableRipple>
-                    <Link href="/mypage" underline="none">
+                    <Link href={!cookies.refreshToken ? "/login" : "/mypage"} underline="none">
                         <Typography fontSize="small" color="black">로그아웃</Typography>
                     </Link>
                 </MenuItem>
