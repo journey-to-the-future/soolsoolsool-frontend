@@ -14,7 +14,7 @@ const ImageSize = styled.img`
 
 const Post = forwardRef(({post}, ref) => {
     const postBody = (
-        <Link to={`/detail/product/${post.itemId}`}>
+        <Link to={`/detail/product/${post.id}`}>
             <Box sx={{
                 display: "flex",
                 height: "36vh",

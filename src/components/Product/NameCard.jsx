@@ -8,10 +8,7 @@ import { useNavigate } from "react-router-dom";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import BasicRating from "../UI/BasicRating";
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import Checkbox from '@mui/material/Checkbox';
-
+import FavoriteButton from '../Button/FavoriteButton';
 
 
 export default function NameCard() {
