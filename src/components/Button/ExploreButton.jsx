@@ -9,7 +9,7 @@ const ExploreButton = ({handleButtonClick, label, value}) => {
     const handleClick = () => {
         // toggle
         handleButtonClick()
-        console.log(value)
+        // console.log(value)
         // setIsActive(current => !current);
 
         // or set to true
